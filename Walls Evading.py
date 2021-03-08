@@ -62,7 +62,7 @@ SCORES_COLOR = YELLOW
 
 # Difficulty
 difficulty_factor = 1.1
-spot_change = 0
+spot_change = 0 '''used to increase lvl each 10 score'''
 
 
 # Blocks:
@@ -209,10 +209,6 @@ while not game_over:
             with open (file_name, 'w') as f:
                 f.write('highest_score '+str(score))
 
-    # text = "Highest Score: " + str(highest_score)
     BLOCKS_SPEED = enhance_difficulty(score)
-
-    # player(player_pos)
-    # pygame.draw.rect(screen, player_color, (player_pos[0], player_pos[1], player_size, player_size))
     pygame.display.update()
 
