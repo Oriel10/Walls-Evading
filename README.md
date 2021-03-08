@@ -1,2 +1,2 @@
 # Walls-Evading
-a python game
+a python game implemented using pygame.
