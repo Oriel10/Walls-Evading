@@ -62,7 +62,7 @@ SCORES_COLOR = YELLOW
 
 # Difficulty
 difficulty_factor = 1.1
-spot_change = 0 '''used to increase lvl each 10 score'''
+spot_change = 0 #'''used to increase lvl each 10 score'''
 
 
 # Blocks:

@@ -1,1 +1,1 @@
-highest_score 12
+highest_score 49
