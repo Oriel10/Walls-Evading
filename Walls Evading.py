@@ -1,4 +1,4 @@
-import pygame, random, sys, os.path
+import pygame, random, sys, os.path, time
 from os import path
 
 # initialize the pygame
@@ -29,6 +29,8 @@ START_COLOR = GREEN
 MARKED_START_COLOR = BRIGHT_GREEN
 QUIT_COLOR = RED
 MARKED_QUIT_COLOR = BRIGHT_RED
+COUNTDOWN_SECS = 3
+COUNTDOWN_COLOR = RED
 
 # Title
 pygame.display.set_caption("Walls Evading")
@@ -134,12 +136,13 @@ def enhance_difficulty(score):
     return BLOCKS_SPEED
 
 def game_intro():
+    global game_over
     intro = True
-
     while intro:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 intro = False
+                game_over = True
                 break
         screen.fill(INTRO_BACKGROUND)
         intro_text = "-----Walls Evading-----"
@@ -159,6 +162,8 @@ def game_intro():
         intro1 = button(start_text, start_x, start_y, start_len, button_height, START_COLOR, MARKED_START_COLOR, intro, "start")
         intro2 = button(quit_text, quit_x, quit_y, quit_len, button_height, QUIT_COLOR, MARKED_QUIT_COLOR, intro, "quit")
         if intro1 == False or intro2 == False:
+            if intro2 == True:
+                start_timer()
             intro = False
         pygame.display.update()
 
@@ -180,6 +185,22 @@ def button(msg, x, y, w, h, ic, ac, intro, action = None):
     screen.blit(label, (x,y))
     return True
 
+def start_timer():
+    countdown = COUNTDOWN_SECS
+    text1 = "GET READY!"
+    text2 = str(countdown)
+    label_get_ready = ScoreFont.render(text1, 1, COUNTDOWN_COLOR)
+    while countdown >= 0:
+        screen.fill((255,255,255))
+        label_countdown = ScoreFont.render(text2, 1, COUNTDOWN_COLOR)
+        screen.blit(label_get_ready, (WIDTH/2.5, HEIGHT/3))
+        screen.blit(label_countdown, (WIDTH/2, HEIGHT/2))
+        pygame.display.update()
+        time.sleep(1) 
+        countdown -= 1
+        text2 = str(countdown)
+
+   
 # Game Loop:
 game_over = False 
 game_intro()
