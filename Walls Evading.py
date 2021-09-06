@@ -38,7 +38,7 @@ pygame.display.set_caption("Walls Evading")
 # Player
 player_img = pygame.image.load('spaceship.png')
 player_img_size = 64
-player_size = 50
+player_size = 64
 player_x = player_size
 player_y = HEIGHT - 2*player_size
 player_x_change = 0
@@ -205,7 +205,7 @@ def start_timer():
 game_over = False 
 game_intro()
 while not game_over:
-    screen.fill((0,0,0))
+    screen.fill(BLACK)
     player(player_pos)
     score = blocks(score)
     print_scores(score,highest_score)
@@ -228,7 +228,7 @@ while not game_over:
         game_over = True
         if score > highest_score:
             with open (file_name, 'w') as f:
-                f.write('highest_score '+str(score))
+                f.write('highest_score ' + str(score))
 
     BLOCKS_SPEED = enhance_difficulty(score)
     pygame.display.update()
